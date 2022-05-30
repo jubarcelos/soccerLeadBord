@@ -39,8 +39,8 @@ Ao iniciar este projeto, você concorda com as diretrizes do Código de Conduta 
   <summary><strong>🗓 Data de Entrega</strong></summary><br />
 
   * Projeto individual;
-  * Serão `X` dias de projeto;
-  * Data de entrega para avaliação final do projeto: `DD/MM/YYYY - 14:00h`.
+  * Serão `7` dias de projeto;
+  * Data de entrega para avaliação final do projeto: `20/06/2022 14:00`.
 
 </details>
 
@@ -50,9 +50,9 @@ Ao iniciar este projeto, você concorda com as diretrizes do Código de Conduta 
   <summary><strong>‼️ Antes de começar a desenvolver</strong></summary><br />
 
   1. Clone o repositório
-    * `git clone https://github.com/tryber/sd-0x-trybe-futebol-clube.git`.
+    * `git clone https://github.com/tryber/sd-016-a-trybe-futebol-clube.git`.
     * Entre na pasta do repositório que você acabou de clonar:
-      * `cd sd-0x-trybe-futebol-clube`
+      * `cd sd-016-a-trybe-futebol-clube`
 
   2. Instale as dependências [**Caso existam**]
     * `npm install`
@@ -64,7 +64,7 @@ Ao iniciar este projeto, você concorda com as diretrizes do Código de Conduta 
       * Exemplo: `git checkout master`
     * Agora crie uma branch à qual você vai submeter os `commits` do seu projeto
       * Você deve criar uma branch no seguinte formato: `nome-de-usuario-nome-do-projeto`
-      * Exemplo: `git checkout -b joaozinho-sd-0x-trybe-futebol-clube`
+      * Exemplo: `git checkout -b joaozinho-sd-016-a-trybe-futebol-clube`
 
   4. Adicione as mudanças ao _stage_ do Git e faça um `commit`
     * Verifique que as mudanças ainda não estão no _stage_
@@ -79,7 +79,7 @@ Ao iniciar este projeto, você concorda com as diretrizes do Código de Conduta 
           * `git status` (deve aparecer uma mensagem tipo _nothing to commit_ )
 
   5. Adicione a sua branch com o novo `commit` ao repositório remoto
-    * Usando o exemplo anterior: `git push -u origin joaozinho-sd-0x-trybe-futebol-clube`
+    * Usando o exemplo anterior: `git push -u origin joaozinho-sd-016-a-trybe-futebol-clube`
 
   6. Crie um novo `Pull Request` _(PR)_
     * Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-0x-project-[nome-do-projeto]/pulls)
@@ -128,7 +128,7 @@ Ao iniciar este projeto, você concorda com as diretrizes do Código de Conduta 
 
   Este projeto já vem com as dependências relacionadas ao _linter_ configuradas nos arquivos `package.json` nos seguintes caminhos:
 
-  - `sd-0x-trybe-futebol-clube/app/backend/package.json`
+  - `sd-016-a-trybe-futebol-clube/app/backend/package.json`
 
   Para rodar o `ESLint` em um projeto, basta executar o comando `npm install` dentro do projeto e depois `npm run lint`. Se a análise do `ESLint` encontrar problemas no seu código, tais problemas serão mostrados no seu terminal. Se não houver problema no seu código, nada será impresso no seu terminal.
 
@@ -169,7 +169,7 @@ Ao iniciar este projeto, você concorda com as diretrizes do Código de Conduta 
 
   **Faça essas configurações também para as variáveis de ambiente usadas nesses arquivo:**
 
-  `sd-0x-trybe-futebol-clube/app/backend/src/database/config/database.ts`
+  `sd-016-a-trybe-futebol-clube/app/backend/src/database/config/database.ts`
 
   ```
   module.exports = {
@@ -382,7 +382,7 @@ Ao iniciar este projeto, você concorda com as diretrizes do Código de Conduta 
   - Vá até a página DO SEU Pull Request, adicione a label de "code-review" e marque seus colegas
     - No menu à direita, clique no *link* "Labels" e escolha a label code-review
     - No menu à direita, clique no *link* "Assignees" e escolha o seu usuário
-    - No menu à direita, clique no *link* "Reviewers" e digite students, selecione o time tryber/students-sd-0x
+    - No menu à direita, clique no *link* "Reviewers" e digite students, selecione o time tryber/students-sd-016-a
 
   Se ainda houver alguma dúvida sobre como entregar seu projeto, [aqui tem um video explicativo](https://vimeo.com/362189205).
   :warning: **Lembre-se de garantir que todas as _issues_ comentadas pelo Linter estão resolvidas!** :warning:
