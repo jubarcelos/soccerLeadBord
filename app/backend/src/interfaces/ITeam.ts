@@ -1,6 +1,6 @@
-interface Team {
+interface ITeam {
   id?:number,
   teamName: string,
 }
 
-export default Team;
+export default ITeam;
