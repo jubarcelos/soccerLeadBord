@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import { compareSync } from 'bcrypt';
-import { IUser, IUserCredentials, IUserPlublic } from '../interfaces/IUser';
+import { IUser, IUserCredentials, IUserPublic } from '../interfaces/IUser';
 import UserModel from '../database/models/User';
 import RequestError from '../helper/RequestError';
 
@@ -13,7 +13,7 @@ class LoginService {
       throw new RequestError(StatusCodes.UNAUTHORIZED, 'Incorrect email or password');
     }
     const { id, username, role } = user;
-    return { id, username, role, email } as IUserPlublic;
+    return { id, username, role, email } as IUserPublic;
   };
 }
 

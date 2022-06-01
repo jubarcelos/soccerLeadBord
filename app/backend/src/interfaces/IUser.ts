@@ -6,7 +6,7 @@ interface IUser {
   password: string,
 }
 
-interface IUserPlublic {
+interface IUserPublic {
   id?:number,
   username: string,
   role: string,
@@ -18,4 +18,4 @@ interface IUserCredentials {
   password: string,
 }
 
-export { IUser, IUserPlublic, IUserCredentials };
+export { IUser, IUserPublic, IUserCredentials };
