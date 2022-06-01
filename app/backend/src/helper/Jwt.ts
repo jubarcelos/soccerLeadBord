@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import { verify, sign, SignOptions } from 'jsonwebtoken';
-import { IUserPlublic } from '../interfaces/IUser';
+import IUserToken from '../interfaces/IUserToken';
+import { IUserPublic } from '../interfaces/IUser';
 
 class Jwt {
   private _secret: string;
@@ -13,23 +14,14 @@ class Jwt {
     };
   }
 
-  public sign(data: IUserPlublic) {
+  public sign(data: IUserPublic) {
     const token = sign(data, this._secret, this._config);
     return token;
   }
 
   public verify(token: string) {
-    return verify(token, this._secret);
+    return verify(token, this._secret) as IUserToken;
   }
 }
 
 export default Jwt;
-
-// const test = new Jwt();
-// test.sign(user);
-
-// const secret = process.env.JWT_SECRET || 'senha';
-
-// interface IError {
-//   name: string;
-// }
