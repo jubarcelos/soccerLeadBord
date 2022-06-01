@@ -1,2 +1,6 @@
 bcryptjs
-http-status 
+http-status
+http-status-codes
+joi
+celebrate
+jsonwebtoken
