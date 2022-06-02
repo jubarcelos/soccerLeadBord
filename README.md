@@ -856,7 +856,7 @@ Ao finalizar e submeter o projeto, não se esqueça de avaliar sua experiência 
 
   - Será validado que não é possível inserir uma partida com times iguais;
 
-  - Não deve ser possível criar uma partida com o mesmo time, exemplo: Barcelona x Barcelona, caso contrário, deve-se retornar, com um status `401`, a seguinte mensagem::
+  - Não deve ser possível criar uma partida com o mesmo time, exemplo: Barcelona x Barcelona, caso contrário, deve-se retornar, com um status `404`, a seguinte mensagem::
 
   ```json
   { "message": "It is not possible to create a match with two equal teams" }
