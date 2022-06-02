@@ -40,7 +40,7 @@ Ao iniciar este projeto, você concorda com as diretrizes do Código de Conduta 
 
   * Projeto individual;
   * Serão `7` dias de projeto;
-  * Data de entrega para avaliação final do projeto: `20/06/2022 14:00`.
+  * Data de entrega para avaliação final do projeto: `21/06/2022 14:00`.
 
 </details>
 
@@ -866,7 +866,7 @@ Ao finalizar e submeter o projeto, não se esqueça de avaliar sua experiência 
 
   - Será validado que não é possível inserir uma partida com time que não existe na tabela teams;
 
-  - caso algum dos times não esteja cadastrado no banco de dados, deve-se retornar, com um status `401,` a seguinte mensagem:
+  - caso algum dos times não esteja cadastrado no banco de dados, deve-se retornar, com um status `404,` a seguinte mensagem:
 
   ```json
   { "message": "There is no team with such id!" }
