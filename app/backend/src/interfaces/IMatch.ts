@@ -1,4 +1,4 @@
-interface ITeam {
+interface IMatch {
   id?:number,
   homeTeam: number,
   homeTeamGoals: number,
@@ -18,4 +18,4 @@ interface IMatchTeam {
   teamAway: object,
 }
 
-export { ITeam, IMatchTeam };
+export { IMatch, IMatchTeam };
