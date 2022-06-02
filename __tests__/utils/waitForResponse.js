@@ -10,7 +10,7 @@ const waitForResponse = async ({
   timeOut = defaultDelay,
   log = process.env.DEBUG === "true"
 }) =>
-  new Promise(async (resolve, reject)=>{
+  new Promise(async (resolve, reject) => {
     try {
       const clear = () => {
         page.removeListener('response', onResponse);
@@ -18,6 +18,7 @@ const waitForResponse = async ({
       }
 
       const onResponse = async (response) => {
+        console.log(response);
         const type = response?._request?._initiator?.type;
         const method = response?.request?.().method?.();
         const url = response?.url?.();
@@ -25,12 +26,12 @@ const waitForResponse = async ({
         const body = await response?.json?.().catch(() => false);
 
         const condition = type.trim() === expectedRequestType.trim() &&
-                          method.trim() === expectedRequestMethod.trim() &&
-                          url.trim() === expectedResponseUrl.trim() &&
-                          Number(status) === Number(expectedResponseStatus) &&
-                          body !== false
+          method.trim() === expectedRequestMethod.trim() &&
+          url.trim() === expectedResponseUrl.trim() &&
+          Number(status) === Number(expectedResponseStatus) &&
+          body !== false
 
-        if(log) {
+        if (log) {
           console.warn({
             type,
             method,
@@ -40,7 +41,7 @@ const waitForResponse = async ({
           });
         }
 
-        if (condition){
+        if (condition) {
           clear();
           return resolve({
             type,
@@ -50,6 +51,17 @@ const waitForResponse = async ({
             body,
           });
         }
+        if (method !== 'OPTIONS') return reject({
+          typeExpected:expectedRequestType,
+          typeReceived: type,
+          methodExpected: expectedRequestMethod,
+          methodReceived:method,
+          urlExpected: expectedResponseUrl,
+          urlReceived: url,
+          statusExpected:expectedResponseStatus ,
+          statusReceived: status,
+          receivedBody: JSON.stringify(body),
+        })
       };
 
       page.on('response', onResponse);
