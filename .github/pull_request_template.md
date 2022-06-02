@@ -2,6 +2,7 @@
 - [ ] Estou usando `node` na versão `16.15.0 LTS`, para [instalar o nvm](https://github.com/nvm-sh/nvm#installing-and-updating) e rode os comandos abaixo para instalar a versão e usá-la:
    - [ ] `nvm install 16 --lts`
    - [ ] `nvm use 16`
+   - [ ] `nvm alias default 16` 
 - [ ] Estou usando `docker-compose` na versão `ˆ1.29.2`, use esse [link de referência para essa instalação no ubuntu do course](https://app.betrybe.com/course/back-end/docker/orquestrando-containers-com-docker-compose/6e8afaef-566a-47f2-9246-d3700db7a56a/conteudo/0006a231-1a10-48a2-ac82-9e03e205a231/instalacao/abe40727-6310-4ad8-bde6-fd1e919dadc0?use_case=side_bar), existe o link da documentação oficial com passos para [desinstalar](https://docs.docker.com/compose/install/#uninstallation) caso necessário
 - [ ] Configurei minha `Dockerfile` do _frontend_ e do _backend_, copiando arquivos, instalando dependências e rodando a aplicação
 - [ ] No `docker-compose.yml`:
