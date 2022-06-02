@@ -18,7 +18,6 @@ const waitForResponse = async ({
       }
 
       const onResponse = async (response) => {
-        console.log(response);
         const type = response?._request?._initiator?.type;
         const method = response?.request?.().method?.();
         const url = response?.url?.();
