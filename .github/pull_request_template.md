@@ -8,6 +8,7 @@
 - [ ] No `docker-compose.yml`:
   - [ ] As portas dos serviços foram mapeadas
   - [ ] Os containers estão nomeados (container-name)
+- [ ] O Docker está adicionado no grupo de usuários (você consegue executar o comando `docker ps` sem o `sudo`). Solução [aqui](https://app.betrybe.com/course/back-end/docker/utilizando-containers-docker/208d7122-25f3-4135-b6bc-84ebb49665a8/conteudos/402b5d87-1d0d-4c5d-802c-032fd062868c/fazendo-a-instalacao-do-docker-engine/67685310-ebbc-4c7c-9f50-dacc0c7d84fc?use_case=side_bar)
 - [ ] O comando `docker-compose up --build` roda sem erros no banco, no _back_ e no _front_
 - [ ] Listei todas as dependências que usei extras (joi, boom, express-async-errors...) no backend em `app/backend/packages.npm`
 - [ ] A _migration_ `app/backend/src/database/migrations/99999999999999-create-z.js` roda sem problemas quando se executa `npm run db:reset`
