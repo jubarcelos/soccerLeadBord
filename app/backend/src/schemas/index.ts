@@ -5,7 +5,7 @@ const allFilled = { 'any.unknown': 'All fields must be filled' };
 
 const body = {
   login: joi.object().keys({
-    email: joi.string().required()
+    email: joi.string().email({ minDomainSegments: 2 }).lowercase().required()
       .messages(allFilled),
     password: joi.string().min(6).required()
       .messages(allFilled),

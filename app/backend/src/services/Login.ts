@@ -1,5 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
-import { compareSync } from 'bcrypt';
+import { compareSync } from 'bcryptjs';
 import { IUser, IUserCredentials, IUserPublic } from '../interfaces/IUser';
 import UserModel from '../database/models/User';
 import RequestError from '../helper/RequestError';
