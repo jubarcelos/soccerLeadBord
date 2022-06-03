@@ -18,4 +18,9 @@ interface IMatchTeam {
   teamAway: object,
 }
 
-export { IMatch, IMatchTeam };
+interface IMatchUpdate {
+  homeTeamGoals: number,
+  awayTeamGoals: number,
+}
+
+export { IMatch, IMatchTeam, IMatchUpdate };
