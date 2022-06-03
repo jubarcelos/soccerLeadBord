@@ -14,7 +14,7 @@ class CreateMatchService {
     const existsHomeTeam = teamList.find((team) => Number(team.id) === Number(homeTeam));
     const existsAwayTeam = teamList.find((team) => Number(team.id) === Number(awayTeam));
     if (!existsHomeTeam || !existsAwayTeam) {
-      throw new RequestError(StatusCodes.UNAUTHORIZED, 'There is no team with such id!');
+      throw new RequestError(StatusCodes.NOT_FOUND, 'There is no team with such id!');
     }
     if (homeTeam === awayTeam) {
       const message = 'It is not possible to create a match with two equal teams';
