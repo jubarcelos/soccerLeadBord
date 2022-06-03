@@ -1,30 +1,32 @@
-// // import { StatusCodes } from 'http-status-codes';
-// import { IMatch } from '../interfaces/IMatch';
-// import MatchModel from '../database/models/Match';
-// // import RequestError from '../helper/RequestError';
+import { StatusCodes } from 'http-status-codes';
+import { IMatch } from '../interfaces/IMatch';
+import MatchModel from '../database/models/Match';
+import RequestError from '../helper/RequestError';
 
-// class CreateMatchService {
-//   public create = async (body: IMatch) => {
-//     const {
-//       homeTeam,
-//       awayTeam,
-//       homeTeamGoals,
-//       awayTeamGoals,
-//       inProgress,
-//     } = body;
+class CreateMatchService {
+  public create = async (body: IMatch, token: string) => {
+    const {
+      homeTeam,
+      awayTeam,
+      homeTeamGoals,
+      awayTeamGoals,
+    } = body;
 
-//     // const matchListed = await MatchModel.findOne({ where: { homeTeam, awayTeam, inProgress } });
-//     const newMatch = await MatchModel.create({
-//       homeTeam,
-//       awayTeam,
-//       homeTeamGoals,
-//       awayTeamGoals,
-//       inProgress,
-//     });
+    if (!token) throw new RequestError(StatusCodes.UNAUTHORIZED, 'Token is not validate');
+    // const matchListed = await MatchModel.findOne({ where: { homeTeam, awayTeam, inProgress } });
 
-//     // if (matchListed) throw new RequestError(StatusCodes.UNAUTHORIZED, 'Team already exists');
-//     return newMatch;
-//   };
-// }
+    // if (matchListed) throw new RequestError(StatusCodes.UNAUTHORIZED, 'Match already exists');
 
-// export default CreateMatchService;
+    const newMatch = await MatchModel.create({
+      homeTeam,
+      awayTeam,
+      homeTeamGoals,
+      awayTeamGoals,
+      inProgress: true,
+    });
+
+    return newMatch;
+  };
+}
+
+export default CreateMatchService;
