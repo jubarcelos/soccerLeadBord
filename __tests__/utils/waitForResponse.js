@@ -50,7 +50,7 @@ const waitForResponse = async ({
             body,
           });
         }
-        if (method !== 'OPTIONS') return reject({
+        if (process.env.DEBUG === 'true' && method !== 'OPTIONS' && type === 'script') return reject({
           typeExpected:expectedRequestType,
           typeReceived: type,
           methodExpected: expectedRequestMethod,
