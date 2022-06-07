@@ -21,7 +21,7 @@ class MatchController implements IMatchController {
     try {
       const { authorization } = req.headers;
       if (!authorization) throw new RequestError(StatusCodes.UNAUTHORIZED, 'Token is not validate');
-      const match = await this._service.create(req.body, authorization as string);
+      const match = await this._service.create(req.body);
       return res.status(StatusCodes.CREATED).json(match);
     } catch (error) {
       next(error);

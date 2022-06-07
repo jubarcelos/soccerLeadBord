@@ -6,8 +6,7 @@ import TeamModel from '../database/models/Team';
 import ITeam from '../interfaces/ITeam';
 
 class CreateMatchService {
-  public create = async (body: IMatch, token: string) => {
-    if (!token) throw new RequestError(StatusCodes.UNAUTHORIZED, 'Token is not validate');
+  public create = async (body: IMatch) => {
     const { homeTeam, awayTeam } = body;
 
     const teamList = await TeamModel.findAll() as ITeam[];
@@ -20,10 +19,11 @@ class CreateMatchService {
       const message = 'It is not possible to create a match with two equal teams';
       throw new RequestError(StatusCodes.UNAUTHORIZED, message);
     }
-
-    const newMatch = await MatchModel.create({ ...body, inProgress: true });
-
-    return newMatch;
+    if (body.homeTeamGoals >= 0 && body.awayTeamGoals >= 0) {
+      const newMatch = await MatchModel.create({ ...body, inProgress: true });
+      return newMatch;
+    }
+    throw new RequestError(StatusCodes.BAD_REQUEST, 'The goals must be a positive number');
   };
 }
 

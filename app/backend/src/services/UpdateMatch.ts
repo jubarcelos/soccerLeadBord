@@ -8,7 +8,7 @@ class UpdateMatchService {
     if (!token) throw new RequestError(StatusCodes.UNAUTHORIZED, 'Token is not validate');
 
     const match = await MatchModel.findOne({ where: { id } });
-    if (match) {
+    if (match && body.homeTeamGoals >= 0 && body.awayTeamGoals >= 0) {
       await MatchModel.update(
         { homeTeamGoals: body.homeTeamGoals, awayTeamGoals: body.awayTeamGoals },
         { where: { id } },
