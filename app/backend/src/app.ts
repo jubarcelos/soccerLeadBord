@@ -1,8 +1,10 @@
 import * as express from 'express';
+// import * as cors from 'cors';
 import loginRoute from './routers/loginRoute';
 import Errors from './middlewares/Erros';
 import teamsRoute from './routers/teamsRoute';
 import matchesRoute from './routers/matchesRoute';
+import leaderboardRoute from './routers/leaderboardRoute';
 
 class App {
   public app: express.Express;
@@ -16,6 +18,7 @@ class App {
   }
 
   private config():void {
+    // this.app.use(cors);
     const accessControl: express.RequestHandler = (_req, res, next) => {
       res.header('Access-Control-Allow-Origin', '*');
       res.header('Access-Control-Allow-Methods', 'GET,POST,DELETE,OPTIONS,PUT,PATCH');
@@ -28,6 +31,7 @@ class App {
     this.app.use('/login', loginRoute);
     this.app.use('/teams', teamsRoute);
     this.app.use('/matches', matchesRoute);
+    this.app.use('/leaderboard', leaderboardRoute);
     this.app.use(Errors);
   }
 
