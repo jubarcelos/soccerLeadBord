@@ -11,7 +11,7 @@ class Leaderboard {
       const teamData = matches.filter((match) => (
         team.id === match.homeTeam || team.id === match.awayTeam
       ));
-      const teamsMatches = [team.teamName, teamData];
+      const teamsMatches = [team, teamData];
       return teamsMatches;
     });
     return allTeamsMatches;
@@ -29,71 +29,76 @@ class Leaderboard {
     return table;
   };
 
-  public generateLeaderboard = ([teamName, matches]: (string | IMatch[])[]) => {
+  public generateLeaderboard = ([team, matches]: (ITeam | IMatch[])[]) => {
+    const { id, teamName } = team as ITeam;
     const leaderboard = {
-      efficiency: this.efficiencyPercentage(matches as IMatch[]),
-      goalsBalance: this.goalsBalance(matches as IMatch[]),
-      goalsFavor: this.goals(matches as IMatch[]).goalsFavor,
-      goalsOwn: this.goals(matches as IMatch[]).goalsOwn,
+      efficiency: this.efficiencyPercentage(id, matches as IMatch[]),
+      goalsBalance: this.goalsBalance(id, matches as IMatch[]),
+      goalsFavor: this.goals(id, matches as IMatch[]).goalsFavor,
+      goalsOwn: this.goals(id, matches as IMatch[]).goalsOwn,
       name: teamName,
-      totalDraws: this.winnerTeam(matches as IMatch[]).draws,
-      totalGames: matches.length,
-      totalLosses: this.winnerTeam(matches as IMatch[]).losses,
-      totalPoints: this.totalPoints(matches as IMatch[]),
-      totalVictories: this.winnerTeam(matches as IMatch[]).wins,
+      totalDraws: this.winnerTeam(id, matches as IMatch[]).draws,
+      totalGames: (matches as IMatch[]).length,
+      totalLosses: this.winnerTeam(id, matches as IMatch[]).losses,
+      totalPoints: this.totalPoints(id, matches as IMatch[]),
+      totalVictories: this.winnerTeam(id, matches as IMatch[]).wins,
     };
     return leaderboard;
   };
 
-  public winnerTeam = (list: IMatch[]) => {
-    const result = {
-      wins: 0,
-      losses: 0,
-      draws: 0,
-    };
+  public winnerTeam = (teamId:number | undefined, matches: IMatch[]) => {
+    const result = { wins: 0, losses: 0, draws: 0 };
+    let playersOne = 0;
+    let playersTwo = 0;
 
-    list.forEach((match) => {
-      if (match.homeTeamGoals > match.awayTeamGoals) {
-        result.wins += 1;
+    matches.forEach((match) => {
+      if (teamId === match.homeTeam) {
+        playersOne = match.homeTeamGoals;
+        playersTwo = match.awayTeamGoals;
+      } else {
+        playersOne = match.awayTeamGoals;
+        playersTwo = match.homeTeamGoals;
       }
-      if (match.homeTeamGoals < match.awayTeamGoals) {
-        result.losses += 1;
-      }
-      if (match.homeTeamGoals === match.awayTeamGoals) {
-        result.draws += 1;
-      }
+      if (playersOne > playersTwo) result.wins += 1;
+      if (playersOne < playersTwo) result.losses += 1;
+      if (playersOne === playersTwo) result.draws += 1;
     });
     return result;
   };
 
-  public goals = (list: IMatch[]) => {
+  public goals = (teamId:number | undefined, matches: IMatch[]) => {
     const goals = {
       goalsFavor: 0,
       goalsOwn: 0,
     };
 
-    list.forEach((match) => {
-      goals.goalsFavor += match.homeTeamGoals;
-      goals.goalsOwn += match.awayTeamGoals;
+    matches.forEach((match) => {
+      if (teamId === match.homeTeam) {
+        goals.goalsFavor += match.homeTeamGoals;
+        goals.goalsOwn += match.awayTeamGoals;
+      } else {
+        goals.goalsFavor += match.awayTeamGoals;
+        goals.goalsOwn += match.homeTeamGoals;
+      }
     });
     return goals;
   };
 
-  public goalsBalance = (list: IMatch[]) => {
-    const goals = this.goals(list);
+  public goalsBalance = (teamId:number | undefined, matches: IMatch[]) => {
+    const goals = this.goals(teamId, matches as IMatch[]);
     const result = goals.goalsFavor - goals.goalsOwn;
     return result;
   };
 
-  public totalPoints = (list: IMatch[]) => {
-    const result = this.winnerTeam(list);
+  public totalPoints = (teamId:number | undefined, matches: IMatch[]) => {
+    const result = this.winnerTeam(teamId, matches);
     const points = Number(result.wins) * 3 + Number(result.draws);
     return Number(points.toFixed(2)) as number;
   };
 
-  public efficiencyPercentage = (list: IMatch[]) => {
-    const playRelation = (list.length) * 3;
-    const efficiency = Number(this.totalPoints(list)) / playRelation;
+  public efficiencyPercentage = (teamId:number | undefined, matches: IMatch[]) => {
+    const playRelation = (matches.length) * 3;
+    const efficiency = Number(this.totalPoints(teamId, matches)) / playRelation;
     const percentage = (efficiency * 100).toFixed(2);
     return +percentage as number;
   };

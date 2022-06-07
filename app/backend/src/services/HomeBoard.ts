@@ -11,7 +11,7 @@ class HomeBoard extends Leaderboard {
       const teamData = matches.filter((match) => (
         team.id === match.homeTeam
       ));
-      const teamsMatches = [team.teamName, teamData];
+      const teamsMatches = [team, teamData];
       return teamsMatches;
     });
     return allTeamsMatches;
