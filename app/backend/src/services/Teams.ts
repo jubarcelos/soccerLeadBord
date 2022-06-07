@@ -3,7 +3,7 @@ import ITeam from '../interfaces/ITeam';
 import TeamModel from '../database/models/Team';
 import RequestError from '../helper/RequestError';
 
-class LoginService {
+class TeamsService {
   public get = async () => {
     const teamList = await TeamModel.findAll() as ITeam[];
     if (!teamList) throw new RequestError(StatusCodes.UNAUTHORIZED, 'Does not have exist teams');
@@ -11,4 +11,4 @@ class LoginService {
   };
 }
 
-export default LoginService;
+export default TeamsService;
