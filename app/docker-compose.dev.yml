@@ -3,6 +3,9 @@ services:
   frontend:
     build: ./frontend
     platform: linux/x86_64
+    container_name: app_frontend
+    ports:
+      - "3000:3000"
     # ...
     depends_on:
       backend:
@@ -16,7 +19,10 @@ services:
   backend:
     build: ./backend
     platform: linux/x86_64
+    container_name: app_backend
     restart: 'always'
+    ports:
+      - "3001:3001"
     # ...
     command: npm run dev
     volumes:
