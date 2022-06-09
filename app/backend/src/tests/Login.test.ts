@@ -9,7 +9,6 @@ import UserModel from '../database/models/User';
 
 import { User, UserPublic } from './mocks/User';
 import { StatusCodes } from 'http-status-codes';
-import { ILoggedUser } from '../interfaces/IUser';
 import Jwt from '../helper/Jwt';
 
 
@@ -86,6 +85,39 @@ describe('Endpoint POST /login', () => {
         user: UserPublic[1],
         token: jwt.sign(UserPublic[1]),
       });
+    });
+  });
+});
+
+describe('Endpoint GET /login/validate', () => {
+  const chaiHttpResponse = async (token?: string) => {
+    if (!token) {
+      return chai.request(app).get('/login/validate');
+    }
+    return chai.request(app).get('/login/validate').set('Authorization', token );
+  };
+  const jwt = new Jwt();
+  describe('In fail case', () => {  
+    it('should return an error message if token is not valid', async () => {
+      const response = await chaiHttpResponse('eyJhbGci');
+      expect(response.status).to.be.deep.equal(StatusCodes.UNAUTHORIZED);
+      expect(response.body).to.haveOwnProperty('message');
+      expect(response.body).to.be.deep.equal({ message:'Token is invalid'});
+    });
+
+    it('should return an error message if authorization is not defined', async () => {
+      const response = await chaiHttpResponse();
+      expect(response.status).to.be.deep.equal(StatusCodes.UNAUTHORIZED);
+      expect(response.body).to.haveOwnProperty('message');
+      expect(response.body).to.be.deep.equal({ message:'"authorization" is required'});
+    });
+  });
+  
+  describe('In success case', () => {  
+    it('should return a role', async () => {
+      const response = await chaiHttpResponse(jwt.sign(UserPublic[0]));     
+      expect(response.status).to.be.equal(StatusCodes.OK);
+      expect(response.body).to.be.equal(UserPublic[0].role);
     });
   });
 });
