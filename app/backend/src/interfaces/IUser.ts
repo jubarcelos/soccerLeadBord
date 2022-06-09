@@ -18,4 +18,14 @@ interface IUserCredentials {
   password: string,
 }
 
-export { IUser, IUserPublic, IUserCredentials };
+interface ILoggedUser {
+  user: {
+    id: number,
+    username: string,
+    role: string,
+    email: string,
+  },
+  token: string;
+}
+
+export { IUser, IUserPublic, IUserCredentials, ILoggedUser };
