@@ -6,8 +6,8 @@ import RequestError from '../helper/RequestError';
 class UpdateMatchService {
   public update = async (body: IMatchUpdate, id:number, token: string): Promise< boolean> => {
     if (!token) throw new RequestError(StatusCodes.UNAUTHORIZED, 'Token is not validate');
-
-    const match = await MatchModel.findOne({ where: { id } });
+    const match = await MatchModel.findOne({ where: { id, inProgress: false }, raw: true });
+    if (!match) throw new RequestError(StatusCodes.NOT_FOUND, 'Match not found');
     if (match && body.homeTeamGoals >= 0 && body.awayTeamGoals >= 0) {
       await MatchModel.update(
         { homeTeamGoals: body.homeTeamGoals, awayTeamGoals: body.awayTeamGoals },

@@ -22,11 +22,7 @@ class FinishedMatchController implements IFinishedMatchController {
       const { authorization } = req.headers;
       if (!authorization) throw new RequestError(StatusCodes.UNAUTHORIZED, 'Token is not validate');
       const { id } = req.params;
-      const matchFinished = await this._service.update(Number(id), authorization as string);
-
-      if (!matchFinished) {
-        return res.status(StatusCodes.NOT_FOUND).json({ message: 'Matches not found!' });
-      }
+      await this._service.update(Number(id), authorization as string);
       return res.status(StatusCodes.OK).json({ message: 'Finished' });
     } catch (error) {
       next(error);

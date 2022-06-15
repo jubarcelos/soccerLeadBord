@@ -22,12 +22,8 @@ class UpdateMatchController implements IMatchController {
       const { authorization } = req.headers;
       if (!authorization) throw new RequestError(StatusCodes.UNAUTHORIZED, 'Token is not validate');
       const { id } = req.params;
-      const matchFinished = await this._service
+      await this._service
         .update(req.body, Number(id), authorization as string);
-
-      if (!matchFinished) {
-        return res.status(StatusCodes.NOT_FOUND).json({ message: 'Matches not found!' });
-      }
       return res.status(StatusCodes.OK).json({ message: 'Match was successfully updated' });
     } catch (error) {
       next(error);
