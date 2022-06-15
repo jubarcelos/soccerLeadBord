@@ -52,7 +52,7 @@ describe('Endpoint patch /matches/id', () => {
       const response = await chaiHttpResponse(1, 'validToken');
       expect(response.status).to.be.equal(StatusCodes.OK);
       expect(response.body).to.haveOwnProperty('message');
-      expect(response.body.message).to.be.equal('Match was successfully updated');
+      expect(response.body.message).to.be.equal('Updated');
     });
   });
 });

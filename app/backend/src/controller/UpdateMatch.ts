@@ -24,7 +24,7 @@ class UpdateMatchController implements IMatchController {
       const { id } = req.params;
       await this._service
         .update(req.body, Number(id), authorization as string);
-      return res.status(StatusCodes.OK).json({ message: 'Match was successfully updated' });
+      return res.status(StatusCodes.OK).json({ message: 'Updated' });
     } catch (error) {
       next(error);
     }
