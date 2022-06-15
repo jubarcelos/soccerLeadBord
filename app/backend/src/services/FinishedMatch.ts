@@ -7,6 +7,7 @@ class FinishedMatchService {
     if (!token) throw new RequestError(StatusCodes.UNAUTHORIZED, 'Token is not validate');
 
     const match = await MatchModel.findOne({ where: { id } });
+    if (!match) throw new RequestError(StatusCodes.NOT_FOUND, 'Match Finished found');
     if (match) {
       await MatchModel.update(
         { inProgress: false },
