@@ -2,6 +2,14 @@
 
 You will need to check if have docker and docker-compose updated version installed.
 
+## Developed using:
+
+- TypeScript
+- functional routes
+- OOP concept
+- Docker ambient
+- git as a code resonator
+
 ## To see in your machine:
 
 Clone this project:
