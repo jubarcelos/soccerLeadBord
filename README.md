@@ -42,5 +42,12 @@ Front end: http://localhost:3000/
 Back end: http://localhost:3001/
 BD: http://localhost:3002/
 
-Front end and tests of tests developed by Trybe.
+Front end developed by Trybe.
 To check all my code, open app >> backend >> src
+
+To run test inside of backend:
+
+
+```bash
+  npm test
+```
