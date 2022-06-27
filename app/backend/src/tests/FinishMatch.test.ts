@@ -12,7 +12,7 @@ import { Match } from './mocks/Match';
 chai.use(chaiHttp);
 const { expect } = chai;
 
-describe.only('Endpoint patch /matches/id/finish', () => {
+describe('Endpoint patch /matches/id/finish', () => {
   const chaiHttpResponse = async (id: number, token: string) => (
     chai.request(app).patch(`/matches/${id}/finish`).set('Authorization', token)
   );
