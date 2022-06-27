@@ -9,6 +9,8 @@ You will need to check if have docker and docker-compose updated version install
 - OOP concept
 - Docker ambient
 - git as a code resonator
+- chai tests
+- sinon tests
 
 ## To see in your machine:
 
@@ -45,7 +47,7 @@ BD: http://localhost:3002/
 Front end developed by Trybe.
 To check all my code, open app >> backend >> src
 
-To run test inside of backend:
+To run test, inside of backend, in backend terminal:
 
 
 ```bash
